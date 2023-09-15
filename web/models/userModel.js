@@ -26,7 +26,24 @@ class UserModel {
                 return results(null, true);
             }
         )
+    };
+
+    static createUser(user, results) {
+        const sql = "INSERT INTO users (full_name,user_name,user_password,EMAIL,PHONE) values(?,?,?,?,?)";
+        connect.query(
+            sql,
+            [user.full_name, user.user_name, user.user_password, user.email, user.phone],
+            (err, result) => {
+                if (err) {
+                    console.log("error: ", err);
+                    return results(err, null);
+                }
+                return results(null, { ...user });
+            }
+        )
     }
+
+
 
 }
 

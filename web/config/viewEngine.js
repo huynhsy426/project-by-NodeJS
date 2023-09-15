@@ -8,7 +8,7 @@ const configViewEngine = (app, session, dirName) => {
     app.set('view engine', 'ejs');
     app.set('views', 'app/views');
 
-    app.use(express.static(path.join(dirName, 'App/public')));
+    app.use(express.static(path.join(dirName, 'web/public')));
     app.use(bodyParser.json());       // to support JSON-encoded bodies
     app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
         extended: true

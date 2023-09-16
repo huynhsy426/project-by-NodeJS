@@ -1,9 +1,16 @@
 const express = require('express');
+const session = require('express-session');
 const app = express();
 
-app.get('/', (req, res) => {
-    res.send('Welcome')
-})
+const configViewEngine = require('./web/config/viewEngine');
+const loginRouter = require('./web/routes/projectRouter');
 
-app.listen(8080);
-console.log('Listening on port 8080');
+
+
+var dirName = __dirname;
+configViewEngine(app, session, dirName);
+
+app.use("/project", loginRouter);
+
+app.listen(8081);
+console.log('Listening on port 8081');

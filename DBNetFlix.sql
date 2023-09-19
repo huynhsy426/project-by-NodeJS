@@ -4,7 +4,7 @@ use DBNetFlix;
 CREATE TABLE  Users(
    id int NOT NULL PRIMARY KEY AUTO_INCREMENT,  
    full_name varchar(100),
-   user_name varchar(255) NOT NULL UNIQUE,
+   full_name varchar(255) NOT NULL UNIQUE,
    user_password nvarchar(50) NOT NULL,  
    EMAIL varchar(255),
    PHONE varchar(12)
@@ -14,6 +14,8 @@ create table dept(
 	dept_id int check(dept_id >=0 and dept_id <=100) primary key,
 	dept_name nvarchar(255)
 );
+
+
 
 create table project(
 	project_id int primary key check(project_id >=0 and project_id <=100),
@@ -64,11 +66,22 @@ references dept (dept_id)
 -- ;
 -- set SHOWPLAN_ALL ON
 
-INSERT INTO users VALUES
-(2,"Huynh Sy", "huynhsy","asd","huynhsy@gmail.com","0904444422");
+INSERT INTO users (full_name,user_name,user_password,EMAIL,PHONE) VALUES
+("Huynh Sy", "huynhsy1","asd","huynhsy@gmail.com","0904444422");
 
 SELECT * FROM users;
 
 SELECT * FROM project where dept_id = 3;
 
-select 1 from users where user_name = user_password and user_password = user_name
+SELECT * FROM project;
+
+SELECT * FROM dept;
+
+INSERT INTO project VALUES 
+(1, "aaa", 1 , 4, "2020-12-12","2022-12-12",1),
+(2, "aaaa", 1 , 3, "2020-11-11","2022-11-11",4);
+
+insert into dept values
+(1, "toa a");
+
+select 1 from users where user_name = "huynhsy1" and user_password = "asd"

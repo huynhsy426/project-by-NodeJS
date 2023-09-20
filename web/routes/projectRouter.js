@@ -3,15 +3,25 @@ const router = express.Router();
 const {
     listProject,
     createProject,
-    searchProject,
+    searchProjects,
     deleteById,
-    updateByID
+    updateById
 } = require('../controller/project-controller');
 
 // getListPage
 router.get("/projectList", listProject)
 
+// Create project
 router.post("/createProject", createProject)
+
+// Search project by project_id, project_name, difficulty, dept_id
+router.get("/searchProject", searchProjects)
+
+// Delete project by Id
+router.delete("/deleteProject/:project_id", deleteById)
+
+// Update project by Id
+router.put("/updateProject", updateById)
 
 
 

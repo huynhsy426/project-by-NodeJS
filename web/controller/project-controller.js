@@ -1,4 +1,3 @@
-const ProjectModel = require("../models/projectModel")
 const {
     listProjectService,
     createProjectService,

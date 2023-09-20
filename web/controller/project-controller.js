@@ -121,7 +121,7 @@ const deleteById = (req, res) => {
 
 
 // Update project
-const updateByID = (req, res) => {
+const updateById = (req, res) => {
     console.log(req.body.project, "body")
 
     const today = new Date();
@@ -168,5 +168,5 @@ module.exports = {
     createProject,
     searchProjects,
     deleteById,
-    updateByID
+    updateById
 }

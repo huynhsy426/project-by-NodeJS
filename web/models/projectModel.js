@@ -156,7 +156,7 @@ class ProjectModel {
 
 
     // Update project by Id
-    static updateByID(project, results) {
+    static updateById(project, results) {
         const sql = "UPDATE project SET project_name = ? , difficulty = ?, upd_tm = ?, version = ? WHERE project_id = ?"
         connect.query(
             sql,

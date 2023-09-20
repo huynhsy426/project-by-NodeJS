@@ -12,7 +12,7 @@ CREATE TABLE  Users(
 
 create table dept(
 	dept_id int check(dept_id >=0 and dept_id <=100) primary key,
-	dept_name nvarchar(255)
+	dept_name nvarchar(255) unique
 );
 
 

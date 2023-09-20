@@ -138,7 +138,6 @@ const updateProjectByIdService = (project, results) => {
             }
 
             if (result) {
-                console.log(projectEntity['0'].project_id, 'aadddda')
                 const projectDB = {
                     project_id: project.project_id,
                     project_name: project.project_name,

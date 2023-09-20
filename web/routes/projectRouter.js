@@ -5,7 +5,7 @@ const {
     createProject,
     searchProjects,
     deleteById,
-    updateByID
+    updateById
 } = require('../controller/project-controller');
 
 // getListPage
@@ -21,7 +21,7 @@ router.get("/searchProject", searchProjects)
 router.delete("/deleteProject/:project_id", deleteById)
 
 // Update project by Id
-router.put("/updateProject", updateByID)
+router.put("/updateProject", updateById)
 
 
 

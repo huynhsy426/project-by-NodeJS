@@ -1,3 +1,9 @@
+import {
+    StatusCodes
+} from 'http-status-codes';
+
+
+
 const {
     listProjectService,
     createProjectService,
@@ -13,12 +19,12 @@ const listProject = (req, res) => {
         function (err, result) {
             console.log(result)
             if (err) {
-                return res.status(400).json({
+                return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
                     errorMessage: err
                 })
             }
             console.log(typeof result, "asdasdkjh")
-            return res.status(200).json({
+            return res.status(StatusCodes.OK).json({
                 projectList: result
             })
         }
@@ -44,28 +50,28 @@ const createProject = (req, res) => {
         projectModel,
         (err, result) => {
             if (err) {
-                return res.status(400).json({
+                return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
                     errorMessage: err
                 })
             }
             if (result === "isExistName") {
-                return res.status(200).json({
+                return res.status(StatusCodes.BAD_REQUEST).json({
                     CreateMessage: "Project Name is exist"
                 })
             }
 
             if (result === "isDeptExist") {
-                return res.status(200).json({
+                return res.status(StatusCodes.BAD_REQUEST).json({
                     CreateMessage: "Dept_id is not exist"
                 })
             }
 
             if (result) {
-                return res.status(200).json({
+                return res.status(StatusCodes.BAD_REQUEST).json({
                     CreateMessage: "Duplicate Project"
                 })
             } else {
-                return res.status(200).json({
+                return res.status(StatusCodes.OK).json({
                     CreateMessage: "Project is created successfully"
                 })
             }
@@ -80,11 +86,11 @@ const searchProjects = (req, res) => {
         req.query.inputSearch,
         function (err, searchResult) {
             if (err) {
-                return res.status(400).json({
+                return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
                     errorMessage: err
                 })
             }
-            return res.status(200).json({
+            return res.status(StatusCodes.OK).json({
                 projectList: searchResult
             })
         }
@@ -102,16 +108,16 @@ const deleteById = (req, res) => {
         req.params.project_id,
         function (err, result) {
             if (err) {
-                return res.status(400).json({
+                return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
                     errorMessage: err
                 })
             }
             if (!result) {
-                return res.status(200).json({
+                return res.status(StatusCodes.NO_CONTENT).json({
                     errorMessage: "project not found"
                 })
             }
-            return res.status(200).json({
+            return res.status(StatusCodes.OK).json({
                 projectList: result,
                 successMessage: "Delete project successfully"
             })
@@ -143,17 +149,17 @@ const updateById = (req, res) => {
         projectModel,
         function (err, result) {
             if (err) {
-                return res.status(400).json({
+                return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
                     errorMessage: err
                 })
             }
 
             if (result) {
-                return res.status(200).json({
+                return res.status(StatusCodes.OK).json({
                     successMessage: "Update project successfully"
                 })
             } else {
-                return res.status(400).json({
+                return res.status(StatusCodes.NO_CONTENT).json({
                     errorMessage: "Project not found"
                 })
             }

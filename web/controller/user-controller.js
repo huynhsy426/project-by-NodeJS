@@ -1,3 +1,12 @@
+import {
+    ReasonPhrases,
+    StatusCodes,
+    getReasonPhrase,
+    getStatusCode,
+} from 'http-status-codes';
+
+
+
 const {
     loginByUserService,
     createUserService
@@ -20,8 +29,9 @@ const loginByUser = (req, res) => {
         user_password,
         function (err, result) {
             if (err) {
-                return res.status(400).json({
-                    errorMessage: err
+                return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+                    errorMessage: getReasonPhrase(StatusCodes.INTERNAL_SERVER_ERROR)
+
                 })
             }
             if (result) {
@@ -29,7 +39,7 @@ const loginByUser = (req, res) => {
                 session.username = user_name;
                 session.password = user_password;
                 session.loggedIn = true;
-                return res.status(200).json({
+                return res.status(StatusCodes.OK).json({
                     loginMessage: "Login successful"
                 })
             }
@@ -42,7 +52,7 @@ const loginByUser = (req, res) => {
 const logOutUser = (req, res) => {
     console.log(req);
     req.session.destroy();
-    return res.status(200).json({
+    return res.status(StatusCodes.OK).json({
         loginMessage: "Logout successful"
     })
 };
@@ -51,7 +61,7 @@ const logOutUser = (req, res) => {
 // create Project
 const createUser = (req, res) => {
     const users = {
-        userId: req.body.UserId,
+        userId: req.body.userId,
         full_name: req.body.full_name,
         user_name: req.body.user_name,
         user_password: req.body.user_password,
@@ -65,16 +75,16 @@ const createUser = (req, res) => {
         users,
         function (err, result, userCreate) {
             if (err) {
-                return res.status(400).json({
+                return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
                     errorMessage: err
                 })
             }
             if (!result) {
-                return res.status(200).json({
+                return res.status(StatusCodes.OK).json({
                     registerMessage: " Register successfully"
                 })
             } else {
-                return res.status(400).json({
+                return res.status(StatusCodes.BAD_REQUEST).json({
                     registerMessage: "user name is exist"
                 })
             }

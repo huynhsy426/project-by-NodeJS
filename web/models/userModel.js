@@ -3,7 +3,7 @@ const connect = require('./connection')
 class UserModel {
 
     constructor(UserModel) {
-        this.userId = UserModel.UserId;
+        this.userId = UserModel.userId;
         this.full_name = UserModel.full_name;
         this.user_name = UserModel.user_name;
         this.user_password = UserModel.user_password;
